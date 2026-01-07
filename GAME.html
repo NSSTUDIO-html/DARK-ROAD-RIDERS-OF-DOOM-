@@ -1,115 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dark Road Riders of Doom - Levels</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    /* Metallic shine animation */
-    @keyframes shine {
-      0% { background-position: -200% 0; }
-      100% { background-position: 200% 0; }
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dark Road Riders of Doom – Levels</title>
+<script src="https://cdn.tailwindcss.com"></script>
 
-    /* Pulse glow animation */
-    @keyframes pulseGlow {
-      0%, 100% { box-shadow: 0 0 12px rgba(150, 150, 150, 0.4); }
-      50% { box-shadow: 0 0 20px rgba(200, 200, 200, 0.6); }
-    }
+<style>
+@keyframes shine {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes neonPulse {
+  0%,100% { box-shadow: 0 0 15px rgba(0,255,255,.3); }
+  50% { box-shadow: 0 0 35px rgba(0,255,255,.6); }
+}
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.shine-text { background-size:200% auto; animation:shine 5s linear infinite; }
+.neon { animation:neonPulse 3s infinite; }
+.float { animation:float 6s ease-in-out infinite; }
 
-    .shine-text {
-      background-size: 200% auto;
-      animation: shine 4s linear infinite;
-    }
-
-    .pulse-btn {
-      animation: pulseGlow 3s infinite;
-    }
-
-    .level-card {
-      background: linear-gradient(135deg, #2b2b2b, #1f1f1f, #3c3c3c);
-      border: 2px solid #555;
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
-      transition: transform 0.3s, box-shadow 0.3s;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .level-card:hover {
-      transform: scale(1.08);
-      box-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
-    }
-
-    .level-number {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: #ccc;
-      margin-bottom: 0.5rem;
-      text-shadow: 0 0 6px rgba(255,255,255,0.3);
-    }
-
-    .level-title {
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: #eee;
-      text-align: center;
-      text-shadow: 0 0 8px rgba(255,255,255,0.2);
-    }
-  </style>
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+    linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+  background-size:40px 40px;
+  animation:move 25s linear infinite;
+}
+@keyframes move{
+  from{background-position:0 0;}
+  to{background-position:200px 200px;}
+}
+</style>
 </head>
-<body class="bg-gradient-to-b from-black via-gray-900 to-black flex flex-col items-center justify-center min-h-screen text-gray-200 font-mono">
 
-  <!-- Title -->
-  <h1 class="mb-10 text-4xl sm:text-5xl font-extrabold tracking-widest 
-             text-transparent bg-clip-text bg-gradient-to-r from-gray-300 via-gray-400 to-gray-200 
-             drop-shadow-[0_0_12px_rgba(160,160,160,0.5)] shine-text">
-    SELECT LEVEL
-  </h1>
+<body class="relative bg-gradient-to-b from-black via-gray-900 to-black min-h-screen
+             flex flex-col items-center justify-center font-mono text-gray-200 overflow-hidden">
 
-  <!-- Levels Grid -->
-  <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 w-11/12 max-w-3xl">
-    <!-- Level 1 -->
-    <a href="level1.html" class="level-card px-6 py-12 rounded-2xl pulse-btn w-full">
-      <div class="level-number">LEVEL 1</div>
-      <div class="level-title">THE AWAKENING</div>
-    </a>
+<h1 class="relative z-10 mb-10 text-4xl sm:text-5xl font-extrabold tracking-widest uppercase
+           text-transparent bg-clip-text
+           bg-gradient-to-r from-cyan-300 via-gray-300 to-cyan-400
+           drop-shadow-[0_0_14px_rgba(0,255,255,.5)]
+           shine-text">
+  Select Mission
+</h1>
 
-    <!-- Level 2 -->
-    <a href="level2.html" class="level-card px-6 py-12 rounded-2xl pulse-btn w-full">
-      <div class="level-number">LEVEL 2</div>
-      <div class="level-title">SHADOW STRIKE</div>
-    </a>
+<div class="relative z-10 grid grid-cols-1 sm:grid-cols-2 gap-6 w-11/12 max-w-4xl">
 
-    <!-- Level 3 -->
-    <a href="level3.html" class="level-card px-6 py-12 rounded-2xl pulse-btn w-full">
-      <div class="level-number">LEVEL 3</div>
-      <div class="level-title">NIGHTFALL REBELLION</div>
-    </a>
+<!-- LEVEL 1 -->
+<a href="level1.html" class="float neon p-6 rounded-2xl bg-white/5 backdrop-blur-xl
+   border border-white/10 hover:scale-110 transition text-center">
+  <h2 class="text-cyan-300 font-bold text-xl">LEVEL 1 – CITY SHADOWS</h2>
+  <p class="text-sm text-gray-400 mt-2">Spy • Puzzles • Stealth • Sniper</p>
+  <p class="mt-3 text-gray-300 text-sm">
+    Infiltrate the city at night. Hack systems, avoid guards, eliminate targets silently.
+  </p>
+</a>
 
-    <!-- Level 4 -->
-    <a href="level4.html" class="level-card px-6 py-12 rounded-2xl pulse-btn w-full">
-      <div class="level-number">LEVEL 4</div>
-      <div class="level-title">DREAD SIEGE</div>
-    </a>
+<!-- LEVEL 2 -->
+<a href="level2.html" class="float neon p-6 rounded-2xl bg-white/5 backdrop-blur-xl
+   border border-white/10 hover:scale-110 transition text-center">
+  <h2 class="text-cyan-300 font-bold text-xl">LEVEL 2 – HIGHWAY DEATH RUN</h2>
+  <p class="text-sm text-gray-400 mt-2">Vehicles • Shooting • Survival • Zombies</p>
+  <p class="mt-3 text-gray-300 text-sm">
+    High-speed chase through deadly highways while surviving endless zombie attacks.
+  </p>
+</a>
 
-    <!-- Level 5 -->
-    <a href="level5.html" class="level-card px-6 py-14 rounded-2xl pulse-btn sm:col-span-2 w-full">
-      <div class="level-number">LEVEL 5</div>
-      <div class="level-title">ASCENSION: POWER AGENTS</div>
-    </a>
-  </div>
+<!-- LEVEL 3 -->
+<a href="level3.html" class="float neon p-6 rounded-2xl bg-white/5 backdrop-blur-xl
+   border border-white/10 hover:scale-110 transition text-center">
+  <h2 class="text-cyan-300 font-bold text-xl">LEVEL 3 – DESERT WAR BASE</h2>
+  <p class="text-sm text-gray-400 mt-2">Battles • Army • FPS / TPS • Vehicles</p>
+  <p class="mt-3 text-gray-300 text-sm">
+    Massive desert battlefield with soldiers, tanks, and air strikes.
+  </p>
+</a>
 
-  <!-- Back Button -->
-  <a href="index.html" class="mt-12">
-    <button class="px-10 py-4 bg-gradient-to-r from-gray-800 via-gray-700 to-gray-600
-                   hover:from-gray-700 hover:to-gray-500 text-gray-200 font-bold 
-                   border-2 border-gray-500 rounded-2xl transition duration-300 transform hover:scale-105">
-      ⬅ Back
-    </button>
-  </a>
+<!-- LEVEL 4 -->
+<a href="level4.html" class="float neon p-6 rounded-2xl bg-white/5 backdrop-blur-xl
+   border border-white/10 hover:scale-110 transition text-center">
+  <h2 class="text-cyan-300 font-bold text-xl">LEVEL 4 – MECH FORTRESS</h2>
+  <p class="text-sm text-gray-400 mt-2">Robots • Mechs • Advanced Action</p>
+  <p class="mt-3 text-gray-300 text-sm">
+    Enter the AI fortress. Fight robots, destroy mechs, survive heavy tech warfare.
+  </p>
+</a>
+
+<!-- LEVEL 5 FINAL -->
+<a href="level5.html" class="sm:col-span-2 float neon p-8 rounded-2xl
+   bg-white/5 backdrop-blur-xl border border-cyan-400
+   hover:scale-110 transition text-center">
+  <h2 class="text-cyan-400 font-extrabold text-2xl">
+    LEVEL 5 – DARK ROAD: FINAL WAR
+  </h2>
+  <p class="text-sm text-gray-300 mt-2">
+    ALL ACTION TYPES • 2 TRANSFORMERS BOSS FIGHT
+  </p>
+  <p class="mt-4 text-gray-200">
+    The ultimate war. Spy, vehicles, FPS, mechs — everything collides in one final battle.
+  </p>
+</a>
+
+</div>
+
+<a href="index.html" class="relative z-10 mt-12">
+<button class="px-12 py-4 uppercase tracking-widest font-bold rounded-xl
+               border border-cyan-400 bg-gray-900 text-cyan-300
+               hover:bg-cyan-400 hover:text-black transition neon">
+⬅ Back to Home
+</button>
+</a>
 
 </body>
 </html>
