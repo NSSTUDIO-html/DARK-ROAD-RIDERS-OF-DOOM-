@@ -7,116 +7,165 @@
 <script src="https://cdn.tailwindcss.com"></script>
 
 <style>
+/* ===== Animations ===== */
 @keyframes shine {
   0% { background-position: -200% 0; }
   100% { background-position: 200% 0; }
 }
 @keyframes neonPulse {
-  0%,100% { box-shadow: 0 0 15px rgba(0,255,255,.3); }
-  50% { box-shadow: 0 0 35px rgba(0,255,255,.6); }
+  0%,100% { box-shadow: 0 0 15px rgba(0,255,255,.25); }
+  50% { box-shadow: 0 0 35px rgba(0,255,255,.55); }
 }
 @keyframes float {
   0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  50% { transform: translateY(-8px); }
 }
+
 .shine-text { background-size:200% auto; animation:shine 5s linear infinite; }
 .neon { animation:neonPulse 3s infinite; }
 .float { animation:float 6s ease-in-out infinite; }
 
+/* ===== Background Grid ===== */
 body::before{
   content:"";
-  position:relative;
+  position:fixed;
   inset:0;
   background:
     linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
   background-size:40px 40px;
-  animation:move 25s linear infinite;
+  animation:moveGrid 25s linear infinite;
+  z-index:0;
 }
-@keyframes move{
+@keyframes moveGrid{
   from{background-position:0 0;}
   to{background-position:200px 200px;}
 }
+
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-thumb {
+  background: rgba(0,255,255,.4);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-track { background: transparent; }
 </style>
 </head>
 
-<body class="relative bg-gradient-to-b from-black via-gray-900 to-black min-h-screen
-             flex flex-col items-center justify-center font-mono text-gray-200 overflow-hidden">
+<body class="relative bg-gradient-to-b from-black via-gray-900 to-black
+             min-h-screen w-full
+             font-mono text-gray-200
+             overflow-x-hidden overflow-y-auto
+             scroll-smooth">
 
-<h1 class="relative z-10 mb-10 text-4xl sm:text-5xl font-extrabold tracking-widest uppercase
+<!-- PAGE WRAPPER -->
+<div class="relative z-10 flex flex-col items-center w-full px-4 py-14">
+
+<!-- TITLE -->
+<h1 class="mb-12 text-4xl sm:text-5xl font-extrabold tracking-widest uppercase
            text-transparent bg-clip-text
            bg-gradient-to-r from-cyan-300 via-gray-300 to-cyan-400
-           drop-shadow-[0_0_14px_rgba(0,255,255,.5)]
+           drop-shadow-[0_0_16px_rgba(0,255,255,.5)]
            shine-text">
   Select Mission
 </h1>
 
-<div class="relative z-10 grid grid-cols-1 sm:grid-cols-2 gap-6 w-11/12 max-w-4xl">
+<!-- LEVEL GRID -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-7 w-full max-w-4xl">
 
 <!-- LEVEL 1 -->
-<a href="level1.html" class="float neon p-6 rounded-2xl bg-white/5 backdrop-blur-xl
-   border border-white/10 hover:scale-110 transition text-center">
-  <h2 class="text-cyan-300 font-bold text-xl">LEVEL 1 – CITY SHADOWS</h2>
-  <p class="text-sm text-gray-400 mt-2">Spy • Puzzles • Stealth • Sniper</p>
-  <p class="mt-3 text-gray-300 text-sm">
+<a href="level1.html"
+class="float neon rounded-2xl p-6 text-center
+       bg-white/5 backdrop-blur-xl border border-white/10
+       hover:scale-110 transition">
+  <h2 class="text-cyan-300 font-bold text-xl">
+    LEVEL 1 – CITY SHADOWS
+  </h2>
+  <p class="text-xs text-gray-400 mt-2">
+    Spy • Puzzles • Stealth • Sniper
+  </p>
+  <p class="mt-3 text-sm text-gray-300">
     Infiltrate the city at night. Hack systems, avoid guards, eliminate targets silently.
   </p>
 </a>
 
 <!-- LEVEL 2 -->
-<a href="level2.html" class="float neon p-6 rounded-2xl bg-white/5 backdrop-blur-xl
-   border border-white/10 hover:scale-110 transition text-center">
-  <h2 class="text-cyan-300 font-bold text-xl">LEVEL 2 – HIGHWAY DEATH RUN</h2>
-  <p class="text-sm text-gray-400 mt-2">Vehicles • Shooting • Survival • Zombies</p>
-  <p class="mt-3 text-gray-300 text-sm">
-    High-speed chase through deadly highways while surviving endless zombie attacks.
+<a href="level2.html"
+class="float neon rounded-2xl p-6 text-center
+       bg-white/5 backdrop-blur-xl border border-white/10
+       hover:scale-110 transition">
+  <h2 class="text-cyan-300 font-bold text-xl">
+    LEVEL 2 – HIGHWAY DEATH RUN
+  </h2>
+  <p class="text-xs text-gray-400 mt-2">
+    Vehicles • Shooting • Survival • Zombies
+  </p>
+  <p class="mt-3 text-sm text-gray-300">
+    High-speed chase across deadly highways with nonstop enemy waves.
   </p>
 </a>
 
 <!-- LEVEL 3 -->
-<a href="level3.html" class="float neon p-6 rounded-2xl bg-white/5 backdrop-blur-xl
-   border border-white/10 hover:scale-110 transition text-center">
-  <h2 class="text-cyan-300 font-bold text-xl">LEVEL 3 – DESERT WAR BASE</h2>
-  <p class="text-sm text-gray-400 mt-2">Battles • Army • FPS / TPS • Vehicles</p>
-  <p class="mt-3 text-gray-300 text-sm">
-    Massive desert battlefield with soldiers, tanks, and air strikes.
+<a href="level3.html"
+class="float neon rounded-2xl p-6 text-center
+       bg-white/5 backdrop-blur-xl border border-white/10
+       hover:scale-110 transition">
+  <h2 class="text-cyan-300 font-bold text-xl">
+    LEVEL 3 – DESERT WAR BASE
+  </h2>
+  <p class="text-xs text-gray-400 mt-2">
+    Battles • Army • FPS / TPS • Vehicles
+  </p>
+  <p class="mt-3 text-sm text-gray-300">
+    Large-scale desert warfare with soldiers, tanks, and air strikes.
   </p>
 </a>
 
 <!-- LEVEL 4 -->
-<a href="level4.html" class="float neon p-6 rounded-2xl bg-white/5 backdrop-blur-xl
-   border border-white/10 hover:scale-110 transition text-center">
-  <h2 class="text-cyan-300 font-bold text-xl">LEVEL 4 – MECH FORTRESS</h2>
-  <p class="text-sm text-gray-400 mt-2">Robots • Mechs • Advanced Action</p>
-  <p class="mt-3 text-gray-300 text-sm">
-    Enter the AI fortress. Fight robots, destroy mechs, survive heavy tech warfare.
+<a href="level4.html"
+class="float neon rounded-2xl p-6 text-center
+       bg-white/5 backdrop-blur-xl border border-white/10
+       hover:scale-110 transition">
+  <h2 class="text-cyan-300 font-bold text-xl">
+    LEVEL 4 – MECH FORTRESS
+  </h2>
+  <p class="text-xs text-gray-400 mt-2">
+    Robots • Mechs • Advanced Action
+  </p>
+  <p class="mt-3 text-sm text-gray-300">
+    Breach the AI fortress and survive high-tech robotic combat.
   </p>
 </a>
 
 <!-- LEVEL 5 FINAL -->
-<a href="level5.html" class="sm:col-span-2 float neon p-8 rounded-2xl
-   bg-white/5 backdrop-blur-xl border border-cyan-400
-   hover:scale-110 transition text-center">
+<a href="level5.html"
+class="sm:col-span-2 float neon rounded-2xl p-8 text-center
+       bg-white/5 backdrop-blur-xl border border-cyan-400
+       hover:scale-110 transition">
   <h2 class="text-cyan-400 font-extrabold text-2xl">
     LEVEL 5 – DARK ROAD: FINAL WAR
   </h2>
   <p class="text-sm text-gray-300 mt-2">
     ALL ACTION TYPES • 2 TRANSFORMERS BOSS FIGHT
   </p>
-  <p class="mt-4 text-gray-200">
-    The ultimate war. Spy, vehicles, FPS, mechs — everything collides in one final battle.
+  <p class="mt-4 text-sm text-gray-200">
+    The ultimate battle where every skill, vehicle, and weapon collides.
   </p>
 </a>
 
 </div>
 
-<a href="index.html" class="relative z-10 mt-12">
-<button class="px-12 py-4 uppercase tracking-widest font-bold rounded-xl
-               border border-cyan-400 bg-gray-900 text-cyan-300
-               hover:bg-cyan-400 hover:text-black transition neon">
+<!-- BACK BUTTON -->
+<a href="index.html" class="mt-16">
+<button class="px-14 py-4 uppercase tracking-widest font-bold
+               rounded-xl border border-cyan-400
+               bg-gray-900 text-cyan-300
+               hover:bg-cyan-400 hover:text-black
+               transition transform hover:scale-110 neon">
 ⬅ Back to Home
 </button>
 </a>
 
+</div>
 </body>
 </html>
